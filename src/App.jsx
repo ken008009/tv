@@ -12,6 +12,7 @@ function App() {
     "amount": "10.30",
     "myTotalAmount": "0",
     "vip": "5",
+    "vipThree": "0",
     "cardNum": "9983 9992 1120 9999",
     "cardAmount": "40.00",
     "recommendAddress": ""

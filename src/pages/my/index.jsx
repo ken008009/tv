@@ -21,6 +21,7 @@ const My = (props) => {
   }, [])
 
   const { address, vip, vipThree } = props.state
+  const cardLevel = vipThree ?? 0
 
   return (
     <>
@@ -37,8 +38,9 @@ const My = (props) => {
               <i className="star-icon"></i>
               <span>V{vip}</span>
             </div>
-            <table>b </table><div className="level-two">
-              <span>{t('实体卡级别')}</span>V{vipThree}
+            <div className="level-two">
+              {/* <span>{t('实体卡级别')}</span>V{vipThree} */}
+              <span>{t('用户级别')}</span>V{cardLevel}
             </div>
           </div>
           {/* <div className="my-uid">UID: 259948883</div> */}

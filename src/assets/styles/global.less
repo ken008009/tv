@@ -1,0 +1,254 @@
+:root {
+  --bg: #FBFBFB;
+  --color-primary: #1E90FF;
+  --font-color: #333;
+  --rv-nav-bar-background-color: none !important;
+  --rv-line-height-lg: none !important;
+  --rv-gray-3: none !important;
+  --rv-nav-bar-icon-color: #FFFFFF !important;
+  --rv-nav-bar-title-text-color: #FFF !important;
+  --rv-tab-active-text-color: #0463B7 !important;
+  --rv-tabs-bottom-bar-color: #0463B7 !important;
+  --rv-action-sheet-item-font-size: 14px !important;
+  --rv-tabs-bottom-bar-color: #0463B7 !important;
+}
+
+html,
+body,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+b,
+i,
+em,
+s,
+u,
+dl,
+dt,
+p,
+dd,
+ul,
+ol,
+li,
+strong,
+span,
+table,
+th,
+tr,
+td,
+img,
+div,
+form,
+fieldset,
+legend,
+input,
+button,
+select,
+option,
+textarea,
+label,
+iframe {
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+html,
+body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+body {
+  margin: 0;
+  font-size: 13px/21px;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji' !important;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  background: var(--bg);
+  color: var(--font-color);
+  -webkit-font-feature-settings: 'tnum';
+  font-feature-settings: 'tnum';
+}
+textarea {
+  resize: none;
+}
+input,
+button,
+textarea {
+  outline: none;
+}
+button {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
+  -ms-interpolation-mode: bicubic;
+}
+
+input,
+input[type='submit'],
+[type='reset'],
+[type='button'] {
+  color: #22242E;
+  -webkit-appearance: none;
+  resize: none;
+}
+
+.clear_fix::after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  height: 0;
+  clear: both;
+}
+
+/* 设置背景文字颜色 */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #cbd3de;
+}
+#root {
+  height: 100%;
+}
+
+.assets-box {
+  // padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .assets-title {
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: bold;
+  }
+  .assets-list {
+    background: #FFF;
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .assets-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .assets-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .assets-icon {
+          width: 40px;
+          height: 40px;
+          background: #EEE;
+          border-radius: 50%;
+        }
+        .usdt {
+          background: url('@images/usdt-icon.png') no-repeat;
+          background-size: cover;
+        }
+        .usd {
+          background: url('@images/usd-icon.png') no-repeat;
+          background-size: cover;
+        }
+        .usdc {
+          background: url('@images/usdc-icon.png') no-repeat;
+          background-size: cover;
+        }
+        .busd {
+          background: url('@images/busd-icon.png') no-repeat;
+          background-size: cover;
+        }
+        .omnispere {
+          background: url('@images/omnispere-icon.png') no-repeat;
+          background-size: cover;
+        }
+        .assets-name {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+      .assets-amount {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+
+.card {
+  height: 200px;
+  border-radius: 12px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  color: #FFF;
+  gap: 20px;
+  justify-content: center;
+  padding: 0 20px;
+  position: relative;
+  overflow: hidden;
+  .open-card-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border-radius: 40px;
+    color: #FFF;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  p {
+    span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}
+.home-card {
+  background: url('@images/card-bg.png') no-repeat center;
+  background-size: cover;
+}
+.wallet-card {
+  background: url('@images/card-bg-2.png') no-repeat center;
+  background-size: cover;
+}
+.bank-card {
+  background: url('@images/card-bg-3.png') no-repeat center;
+  background-size: cover;
+}

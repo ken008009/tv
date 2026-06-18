@@ -1,0 +1,71 @@
+.index-page {
+  background: linear-gradient(to bottom, rgba(241, 233, 254, 1) 0%, rgba(241, 233, 254, 0) 70%);
+  padding: 20px 20px 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    .logo {
+      height: 28px;
+      font-size: 20px;
+      font-weight: 800;
+      font-style: italic;
+      background: linear-gradient(to bottom, #097EC5, #283C75);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .lang-btn {
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA70lEQVR42u2WS4oCQQxAc545xiQzKzdW8AQmegL3giAoCoqKoCC4UDyQe4+iZNHYRFHb7tJNPQhN05/3qE0VJBKJRAay1CjI4rfR/oFI2L8x6P6PW//goaBHYj3b1V6MIc8cyHICD9abXXuYj4ghtzEX3INYez6iark54BHE0vcR1cmlD69ArEMfUYF8AEUg1rGPKLHsY3gHCjL1EUXlyDKBMmDQuY8oIJ9BRsmIpY94JrdvoEowyNpHPJCvIAYYdOMjbuWygZgQ6zYfYZO738InIJZdJr2O7OCTEOshF3D40hbeGmGQTjrMJBKJMlwAWLji8L9/+qAAAAAASUVORK5CYII=') no-repeat right 6px;
+      background-size: 12px 12px;
+      padding-right: 16px;
+      &:hover {
+        color: #0463B7;
+      }
+    }
+  }
+  .menu {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0;
+    gap: 20px 5px;
+    flex-wrap: wrap;
+    .menu-item {
+      width: calc(25% - 4px);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      text-align: center;
+      align-items: center;
+      .menu-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #FFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          font-size: 24px;
+          color: #0463B7;
+        }
+      }
+      span {
+        font-size: 12px;
+        color: #333;
+      }
+    }
+  }
+}

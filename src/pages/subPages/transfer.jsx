@@ -7,10 +7,18 @@ import { fetchAmountToCard, fetchRewardList } from '@services/api'
 import getSign from '@tools/sign'
 import './styles/transfer.less'
 
+const REQ_TYPE_MAP = { 0: 4, 1: 1444, 2: 16 }
+
+const RECORD_TABS = [
+  { name: 0, labelKey: '虚拟卡' },
+  { name: 1, labelKey: '实体卡' },
+  { name: 2, labelKey: '划转极差奖', titleOnly: true },
+]
+
 const Transfer = (props) => {
   const [inputAmount, setInputAmount] = useState('')
   const [recordList, setRecordList] = useState([])
-  const [currentTab, setCurrentTab] = useState(0);
+  const [active, setActive] = useState(0);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [toType, setToType] = useState(0)
@@ -19,9 +27,15 @@ const Transfer = (props) => {
   const { t } = props
 
   useEffect(() => {
+    getRewardList()
+  }, [active, page])
+
+  const handleTabChange = (value) => {
+    setActive(value)
     setPage(1)
-    getRewardList(1)
-  }, [currentTab])
+    setRecordList([])
+    setTotal(0)
+  }
 
   const setAmount = (value) => {
     if (Number(value) > Number(amount)) {
@@ -31,11 +45,10 @@ const Transfer = (props) => {
     setInputAmount(value)
   }
 
-  const getRewardList = (pageNum) => {
+  const getRewardList = () => {
     fetchRewardList({
-      page: pageNum || page,
-      reqType: 4,
-      cardType: currentTab
+      page,
+      reqType: REQ_TYPE_MAP[active] ?? 4
     }).then(res => {
       setTotal(res.count)
       setRecordList(res.list)
@@ -72,7 +85,6 @@ const Transfer = (props) => {
             getRewardList()
           } else {
             setPage(1)
-            getRewardList()
           }
         } else {
           setTimeout(() => {
@@ -89,7 +101,26 @@ const Transfer = (props) => {
     return Number(inputAmount - (inputAmount * amountToRate)).toFixed(2)
   }
 
-  const recordTab = [t('虚拟卡'), t('实体卡')]
+  const recordListContent = (
+    <>
+      <div className="recharge-record-list">
+        {
+          recordList.length > 0 ? recordList.map((item, index) => (
+            <div className="record-item" key={index}>
+              <div className="record-item-left">
+                <p>{props.formatAddress(item.address)}</p>
+                <p>{item.createdAt}</p>
+              </div>
+              <div className="record-item-right">{item.amount} USD</div>
+            </div>
+          )) : <Empty />
+        }
+      </div>
+      {
+        total / 20 > 1 && <Pagination value={page} mode="simple" onChange={setPage} pageCount={Math.ceil(total / 20)} />
+      }
+    </>
+  )
 
   return (
     <>
@@ -131,27 +162,14 @@ const Transfer = (props) => {
       </div>
       <div className="recharge-record">
         <div className="recharge-record-title">{t('划转记录')}</div>
-        <Tabs defaultActive={0} onChange={(value) => {
-          setCurrentTab(value)
-        }}>
-          {recordTab.map(item => (
-            <Tabs.TabPane key={item} title={`${item + t('划转记录')}`}>
-              <div className="recharge-record-list">
-                {
-                  recordList.length > 0 ? recordList.map((item, index) => (
-                    <div className="record-item" key={index}>
-                      <div className="record-item-left">
-                        <p>{props.formatAddress(item.address)}</p>
-                        <p>{item.createdAt}</p>
-                      </div>
-                      <div className="record-item-right">{item.amount} USD</div>
-                    </div>
-                  )) : <Empty />
-                }
-              </div>
-              {
-                recordList.length / 20 > 1 && <Pagination value={page} mode="simple" onChange={setPage} pageCount={Math.ceil(total / 20)} />
-              }
+        <Tabs active={active} ellipsis={false} className="transfer-record-tabs" onChange={handleTabChange}>
+          {RECORD_TABS.map(tab => (
+            <Tabs.TabPane
+              key={tab.name}
+              name={tab.name}
+              title={tab.titleOnly ? t(tab.labelKey) : `${t(tab.labelKey)}${t('划转记录')}`}
+            >
+              {recordListContent}
             </Tabs.TabPane>
           ))}
         </Tabs>

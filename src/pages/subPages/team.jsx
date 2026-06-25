@@ -10,7 +10,8 @@ import './styles/team.less'
 const Team = (props) => {
   const [data, setData] = useState([])
 
-  const { address, myTotalAmount, vip, recommendAddress, canVip } = props.state
+  const { address, myTotalAmount, vipThree, recommendAddress, canVip } = props.state
+  const cardLevel = vipThree ?? 0
 
   const { t } = props
 
@@ -68,7 +69,7 @@ const Team = (props) => {
           </div>
           <div className="team-info-item">
             <p>{t('我的级别')}</p>
-            <p>v{vip}</p>
+            <p>V{cardLevel}</p>
           </div>
           <div className="team-info-item">
             <p>{t('我的推荐人')}</p>

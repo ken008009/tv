@@ -17,6 +17,8 @@ const TreeItem = (props) => {
 
   // const { canVip } = props.state
   const { t, canVip } = props
+  const performanceLevel = props.data.vipThree ?? 0
+  const virtualCardLevel = props.data.vip ?? 0
 
   const handelUnfold = async () => {
     if (!hasChild) return
@@ -113,7 +115,8 @@ const TreeItem = (props) => {
           <p>{props.formatAddress(props.data.address)}<a href="#" onClick={e => copyAddress(e)} style={{marginLeft: 4}}>{t('复制')}</a></p>
           <p>
             <span>{t('业绩')}:{props.data.amount} USD</span>
-            <span>{t('级别')}:v{props.data.vip}</span>
+            <span>{t('业绩级别')}:v{performanceLevel}</span>
+            <span>{t('虚拟卡级别')}:v{virtualCardLevel}</span>
             <span>{t('状态')}:{props.data.cardOpen > 0 ? t('已开通') : t('未开通')}</span>
           </p>
         </div>

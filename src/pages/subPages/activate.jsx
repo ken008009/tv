@@ -19,7 +19,8 @@ const CreateCard = (props) => {
   const [showCode, setShowCode] = useState(false)
   const formRef = useRef(null)
   
-  const { address } = props.state
+  const { address, cardTwo } = props.state
+  const cardPrice = cardTwo ?? 100
   // 处理文件选择，调用上传接口并设置结果到表单
   const handleFileChange = async (name, fileList) => {
     if (fileList.length > 0) {
@@ -114,7 +115,7 @@ const CreateCard = (props) => {
     if (values.phonecountryCode) {
       values.phonecountryCode = values.phonecountryCode.slice(1)
     }
-    
+    values.num = Number(values.num)
     // console.log(values)
     // return
     Toast.loading({
@@ -237,7 +238,7 @@ const CreateCard = (props) => {
             <Input placeholder={t('请输入国家代码')} />
           </Form.Item> */}
           <div className="form-item">
-            <div className="form-label">手机号</div>
+            <div className="form-label">{t('手机号')}</div>
             <div className="form-value">
               <div style={{ width: 80 }}>
                 <Form.Item
@@ -414,7 +415,21 @@ const CreateCard = (props) => {
           >
             <Input placeholder={t('请输入邮编')} />
           </Form.Item>
-          <p style={{textAlign: 'center', padding: '20px 0 5px 0', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px'}}><AiOutlineExclamationCircle size={16} />{t('实体卡')}：100U</p>
+          <Form.Item
+            name='num'
+            label={t('数量')}
+            initialValue={1}
+            rules={[
+              { required: true, message: t('请填写申请实体卡数量') },
+              {
+                pattern: /^[1-9]\d*$/,
+                message: t('请输入正整数'),
+              }
+            ]}
+          >
+            <Input type="digit" placeholder={t('请输入申请实体卡数量')} />
+          </Form.Item>
+          <p style={{textAlign: 'center', padding: '20px 0 5px 0', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px'}}><AiOutlineExclamationCircle size={16} />{t('实体卡')}：{cardPrice}U</p>
         </Form>
       </div>
     </>

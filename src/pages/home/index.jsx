@@ -111,7 +111,8 @@ const Index = (props) => {
             </i>
             <span>{t('申请虚拟卡')}</span>
           </div>
-          <div className="menu-item" onClick={() => cardStatusTwo === '1' ? Toast.info(t('已提交')) : cardStatusTwo === '2' ? Toast.info(t('已申请成功')) : props.navigate('/activate')}>
+          {/* <div className="menu-item" onClick={() => cardStatusTwo === '1' ? Toast.info(t('已提交')) : cardStatusTwo === '2' ? Toast.info(t('已申请成功')) : props.navigate('/activate')}> */}
+          <div className="menu-item" onClick={() => props.navigate('/activate')}>
             <i className="menu-icon">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_128_10)">
